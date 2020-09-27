@@ -5,11 +5,13 @@ import java.util.Scanner;
 public class AddressBookMain {
    public static void main(String[] args) {
 	   System.out.println("Welcome to Address Book Problem");
+	   AddressBook book1 = new AddressBook();
 	   while(1==1)
 	   {
 		   
 		   System.out.println("Press 0 to exit");
 		   System.out.println("Press 1 to add a contact");
+		   System.out.println("Press 2 to edit a contact");
 		   Scanner s = new Scanner(System.in);
 		   int choice = s.nextInt();
 		   
@@ -42,13 +44,25 @@ public class AddressBookMain {
 			   s = new Scanner(System.in);
 			   String phone = s.nextLine();
 			   System.out.println("Enter email");
-			   s = new Scanner(System.in);
+               s = new Scanner(System.in);
 			   String email = s.nextLine();
 			   
 			   Contact person = new Contact(firstname,lastname,address,city,state,zip,phone,email);
-			   AddressBook book1 = new AddressBook();
-			   book1.addContact(person);
+			   book1.addContact(firstname, person);
+			   break;
+			   
 		   
+		   case 2:
+			   System.out.println("Enter the name of the contact you want to edit");
+			   s=new Scanner(System.in);
+			   String name=s.nextLine();
+			   System.out.println("Enter field you want to edit");
+			   s= new Scanner(System.in);
+			   String field = s.nextLine();
+			   System.out.println("Enter the new value");
+			   s=new Scanner(System.in);
+			   String newValue=s.nextLine();
+			   book1.edit(name,field,newValue);
 			   
 		   }
 	   
