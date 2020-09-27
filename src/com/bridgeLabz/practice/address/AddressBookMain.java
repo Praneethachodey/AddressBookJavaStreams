@@ -16,7 +16,9 @@ public class AddressBookMain {
 		   switch(choice)
 		   {
 		   case 0:
-			   break;
+			   System.exit(1);
+			   
+			   
 		   case 1:
 			   System.out.println("Enter firstname ");
 			   s = new Scanner(System.in);
@@ -43,7 +45,11 @@ public class AddressBookMain {
 			   s = new Scanner(System.in);
 			   String email = s.nextLine();
 			   
-			   Contact Person = new Contact(firstname,lastname,address,city,state,zip,phone,email);
+			   Contact person = new Contact(firstname,lastname,address,city,state,zip,phone,email);
+			   AddressBook book1 = new AddressBook();
+			   book1.addContact(person);
+		   
+			   
 		   }
 	   
 	   
