@@ -7,8 +7,6 @@ public class AddressBookMain {
    public static void main(String[] args) {
 	   System.out.println("Welcome to Address Book Problem");
 	   Map<String,AddressBook> bookList = new HashMap<String,AddressBook>();
-	   AddressBook book1 = new AddressBook();
-	   //bookList.put("firstbook",book1 );
 	   while(1==1)
 	   {
 		   
