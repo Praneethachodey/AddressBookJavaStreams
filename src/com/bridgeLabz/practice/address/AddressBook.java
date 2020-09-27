@@ -36,8 +36,14 @@ public class AddressBook {
 			p.email=newValue;
 		System.out.println("Edited successfull : " +field + " to " + newValue );
 		
-		
-		
+	}
+	
+	public void deleteContact(String firstname)
+	{
+		if(Book.containsKey(firstname)) {
+		Book.remove(firstname);
+		System.out.println("Contact successfully deleted");}
+		else System.out.println("Contact not found");
 	}
 
 }

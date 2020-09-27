@@ -12,6 +12,7 @@ public class AddressBookMain {
 		   System.out.println("Press 0 to exit");
 		   System.out.println("Press 1 to add a contact");
 		   System.out.println("Press 2 to edit a contact");
+		   System.out.println("Press 3 to delete a contact");
 		   Scanner s = new Scanner(System.in);
 		   int choice = s.nextInt();
 		   
@@ -63,6 +64,11 @@ public class AddressBookMain {
 			   s=new Scanner(System.in);
 			   String newValue=s.nextLine();
 			   book1.edit(name,field,newValue);
+			   
+		   case 3:
+			   System.out.println("Enter the name of the contact you want to delete");
+			   s=new Scanner(System.in);
+			   book1.deleteContact(s.nextLine());
 			   
 		   }
 	   
