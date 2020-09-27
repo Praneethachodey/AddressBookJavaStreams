@@ -23,5 +23,19 @@ public class Contact {
 		System.out.println("Contact created");
 	}
 	
+	public void print()
+	{
+		System.out.println("firstname: " + this.firstname);
+		System.out.println("lastname: " + this.lastname);
+		System.out.println("address: " + this.address);
+		System.out.println("city: " + this.city);
+		System.out.println("state: " + this.state);
+		System.out.println("zip: " + this.zip);
+		System.out.println("phone: " + this.phone);
+		System.out.println("email " + this.email);
+
+
+	}
+	
 	
 }

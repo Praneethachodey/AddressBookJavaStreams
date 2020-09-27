@@ -1,11 +1,14 @@
 package com.bridgeLabz.practice.address;
 
+import java.util.*;
 import java.util.Scanner;
 
 public class AddressBookMain {
    public static void main(String[] args) {
 	   System.out.println("Welcome to Address Book Problem");
+	   Map<String,AddressBook> bookList = new HashMap<String,AddressBook>();
 	   AddressBook book1 = new AddressBook();
+	   //bookList.put("firstbook",book1 );
 	   while(1==1)
 	   {
 		   
@@ -13,6 +16,7 @@ public class AddressBookMain {
 		   System.out.println("Press 1 to add a contact");
 		   System.out.println("Press 2 to edit a contact");
 		   System.out.println("Press 3 to delete a contact");
+		   System.out.println("press 4 to add a new address book");
 		   Scanner s = new Scanner(System.in);
 		   int choice = s.nextInt();
 		   
@@ -49,11 +53,29 @@ public class AddressBookMain {
 			   String email = s.nextLine();
 			   
 			   Contact person = new Contact(firstname,lastname,address,city,state,zip,phone,email);
-			   book1.addContact(firstname, person);
+			   System.out.println("select a address book to enter the contact");
+			   if(bookList.size()!=0)
+				   System.out.println(bookList.keySet());
+			   else 
+				   System.out.println("There are no books..enter the name to create one");
+			   s=new Scanner(System.in);
+			   String bookname=s.nextLine();
+			   if(bookList.size()==0) bookList.put(bookname,new AddressBook());
+			   bookList.get(bookname).addContact(firstname, person);
 			   break;
 			   
 		   
 		   case 2:
+			   System.out.println("Enter the address book");
+			   if(bookList.size()!=0)
+				   System.out.println(bookList.keySet());
+			   else 
+				   {
+				   System.out.println("There are no books..");
+				   break;
+				   }
+			   s=new Scanner(System.in);
+			   String bookname1=s.nextLine();
 			   System.out.println("Enter the name of the contact you want to edit");
 			   s=new Scanner(System.in);
 			   String name=s.nextLine();
@@ -63,12 +85,26 @@ public class AddressBookMain {
 			   System.out.println("Enter the new value");
 			   s=new Scanner(System.in);
 			   String newValue=s.nextLine();
-			   book1.edit(name,field,newValue);
+			   bookList.get(bookname1).edit(name,field,newValue);
+			   break;
+			   
 			   
 		   case 3:
+			   System.out.println("Enter the address book");
+			   s=new Scanner(System.in);
+			   String bookname2=s.nextLine();
 			   System.out.println("Enter the name of the contact you want to delete");
 			   s=new Scanner(System.in);
-			   book1.deleteContact(s.nextLine());
+			   bookList.get(bookname2).deleteContact(s.nextLine());
+			   break;
+			   
+			   
+		   case 4:
+			   System.out.println("Enter the name of the book");
+			   s=new Scanner(System.in);
+			   AddressBook book2 = new AddressBook();
+			   bookList.put(s.nextLine(), book2);
+			   break;
 			   
 		   }
 	   

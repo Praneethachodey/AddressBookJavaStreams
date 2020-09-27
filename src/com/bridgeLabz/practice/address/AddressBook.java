@@ -10,6 +10,7 @@ public class AddressBook {
 	{
 		Book.put(firstname,person);
 		System.out.println("Contact added: " + firstname);
+		person.print();
 	}
 	
 	public void edit(String firstname, String field,String newValue)
@@ -35,6 +36,7 @@ public class AddressBook {
 		if(field.equalsIgnoreCase("email"))
 			p.email=newValue;
 		System.out.println("Edited successfull : " +field + " to " + newValue );
+		p.print();
 		
 	}
 	
