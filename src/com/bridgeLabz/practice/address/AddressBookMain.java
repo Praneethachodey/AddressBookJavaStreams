@@ -7,6 +7,8 @@ public class AddressBookMain {
    public static void main(String[] args) {
 	   System.out.println("Welcome to Address Book Problem");
 	   Map<String,AddressBook> bookList = new HashMap<String,AddressBook>();
+	   Map<String,ArrayList<Contact>> cityBook = new HashMap<>(); 
+	   Map<String,ArrayList<Contact>> stateBook = new HashMap<>(); 
 	   while(1==1)
 	   {
 		   
@@ -15,6 +17,8 @@ public class AddressBookMain {
 		   System.out.println("Press 2 to edit a contact");
 		   System.out.println("Press 3 to delete a contact");
 		   System.out.println("press 4 to add a new address book");
+		   System.out.println("press 5 to view persons in a specific city");
+		   System.out.println("press 6 to view persons in a specific state");
 		   Scanner s = new Scanner(System.in);
 		   int choice = s.nextInt();
 		   
@@ -25,9 +29,24 @@ public class AddressBookMain {
 			   
 			   
 		   case 1:
+			   System.out.println("select a address book to enter the contact");
+			   if(bookList.size()!=0)
+				   System.out.println(bookList.keySet());
+			   else 
+				   System.out.println("There are no books..enter the name to create one");
+			   s=new Scanner(System.in);
+			   String bookname=s.nextLine();
+			   if(bookList.size()==0) bookList.put(bookname,new AddressBook());
 			   System.out.println("Enter firstname ");
 			   s = new Scanner(System.in);
 			   String firstname = s.nextLine();
+			   if(bookList.get(bookname).Book.containsKey(firstname))
+			   {
+				  System.out.println("Please change firstname..already exits");
+				  System.out.println("Enter firstname ");
+				   s = new Scanner(System.in);
+				   firstname = s.nextLine();
+			   }
 			   System.out.println("Enter lastname");
 			   s = new Scanner(System.in);
 			   String lastname = s.nextLine();
@@ -51,15 +70,18 @@ public class AddressBookMain {
 			   String email = s.nextLine();
 			   
 			   Contact person = new Contact(firstname,lastname,address,city,state,zip,phone,email);
-			   System.out.println("select a address book to enter the contact");
-			   if(bookList.size()!=0)
-				   System.out.println(bookList.keySet());
-			   else 
-				   System.out.println("There are no books..enter the name to create one");
-			   s=new Scanner(System.in);
-			   String bookname=s.nextLine();
-			   if(bookList.size()==0) bookList.put(bookname,new AddressBook());
 			   bookList.get(bookname).addContact(firstname, person);
+			   if(cityBook.containsKey(person.city)) 
+			   {
+			      cityBook.get(person.city).add(person);
+				  stateBook.get(person.state).add(person);
+			   }
+			   else 
+			   {
+				  cityBook.put(person.city, new ArrayList<Contact>());
+			   	  stateBook.put(person.state, new ArrayList<Contact>());
+			   	
+			    }
 			   break;
 			   
 		   
@@ -104,10 +126,49 @@ public class AddressBookMain {
 			   bookList.put(s.nextLine(), book2);
 			   break;
 			   
-		   }
-	   
-	   
-	   
-       }
+		   case 5:
+			   System.out.println("Enter the city you want");
+			   s= new Scanner(System.in);
+			   String c = s.nextLine();
+			   if(cityBook.containsKey(c)) {
+				   ArrayList listOfContacts= cityBook.get(c);
+				   Iterator<Contact> iter = listOfContacts.iterator();
+				   while(iter.hasNext())
+				   {
+					   Contact p = iter.next();
+					   System.out.println(p.firstname + p.lastname);
+					   System.out.println("No of persons in that city : " + stateBook.get(c).size());;
+
+				   }
+				   
+			   }
+			   else
+				   System.out.println("Sorry there are no contacts in that city");
+			   break;
+			   
+		   case 6:
+			   System.out.println("Enter the state you want");
+			   s= new Scanner(System.in);
+			   String st = s.nextLine();
+			   if(stateBook.containsKey(st)) {
+				   ArrayList listOfContactsbyState= stateBook.get(st);
+				   Iterator<Contact> iter1 = listOfContactsbyState.iterator();
+				   while(iter1.hasNext())
+				   {
+					   Contact p1 = iter1.next();
+					   System.out.println(p1.firstname + p1.lastname);
+					   System.out.println("No of persons in that state : " + stateBook.get(st).size());;
+				   }
+				   
+			   }
+			   else
+				   System.out.println("Sorry there are no contacts in that state");
+			   break;
+			  
+			   
+	    }
+		  
+	   	   
+      }
    }
 }

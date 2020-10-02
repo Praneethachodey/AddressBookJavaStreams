@@ -37,5 +37,22 @@ public class Contact {
 
 	}
 	
+//	public boolean equals(Contact p)
+//	{
+//		if(this.lastname==p.lastname) return false;
+//		if(this.city==p.city) return false;
+//		if(this.state==p.state) return false;
+//		if(this.zip==p.zip) return false;
+//		if(this.address==p.address) return false;
+//		if(this.phone==p.phone) return false;
+//		if(this.email==p.email) return false;
+//		return true;
+//
+//		
+//		
+//
+//		
+//	}
+//	
 	
 }
