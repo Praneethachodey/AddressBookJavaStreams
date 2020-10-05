@@ -40,13 +40,15 @@ public class AddressBookMain {
 			   System.out.println("Enter firstname ");
 			   s = new Scanner(System.in);
 			   String firstname = s.nextLine();
-			   if(bookList.get(bookname).Book.containsKey(firstname))
-			   {
-				  System.out.println("Please change firstname..already exits");
-				  System.out.println("Enter firstname ");
-				   s = new Scanner(System.in);
-				   firstname = s.nextLine();
-			   }
+//			   if(bookList.get(bookname).Book.containsKey(firstname))
+//			   {
+//				  System.out.println("Please change firstname..already exits");
+//				  break;
+//			   }
+			AddressBook returnedBook =  bookList.entrySet().stream().filter(book-> bookname.equals(book.getKey())).map(Map.Entry::getValue).findFirst().orElse(null);
+			if(returnedBook.Book.entrySet().stream().anyMatch(contact -> firstname.equals(contact.getKey())))
+				{System.out.println("contact exists");
+			break;}
 			   System.out.println("Enter lastname");
 			   s = new Scanner(System.in);
 			   String lastname = s.nextLine();
