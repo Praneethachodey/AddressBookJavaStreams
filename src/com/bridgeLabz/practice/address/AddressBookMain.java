@@ -136,26 +136,12 @@ public class AddressBookMain {
 		   case 6:
 			   System.out.println("Enter the state you want");
 			   s= new Scanner(System.in);
-			   String st = s.nextLine();
-			   if(stateBook.containsKey(st)) {
-				   ArrayList listOfContactsbyState= stateBook.get(st);
-				   Iterator<Contact> iter1 = listOfContactsbyState.iterator();
-				   while(iter1.hasNext())
-				   {
-					   Contact p1 = iter1.next();
-					   System.out.println(p1.firstname + p1.lastname);
-					   System.out.println("No of persons in that state : " + stateBook.get(st).size());;
-				   }
-				   
-			   }
-			   else
-				   System.out.println("Sorry there are no contacts in that state");
-			   
-//			   bookList.values().stream().forEach(book ->
-//			   book.Book.values().stream().filter(contact -> contact.state.equals(stateToSearch)).collect(Collectors.toList()).forEach(contact -> System.out.println(contact.firstname))
-//					   );
-//			   break;
-//			  
+			   String stateToSearch = s.nextLine();
+			   bookList.values().stream().forEach(book ->
+			   book.Book.values().stream().filter(contact -> contact.state.equals(stateToSearch)).collect(Collectors.toList()).forEach(contact -> System.out.println(contact.firstname))
+			   );
+			   break;
+			  
 			  
 			   
 	    }
