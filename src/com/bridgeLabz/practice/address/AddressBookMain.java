@@ -2,6 +2,7 @@ package com.bridgeLabz.practice.address;
 
 import java.util.*;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
    public static void main(String[] args) {
@@ -40,11 +41,6 @@ public class AddressBookMain {
 			   System.out.println("Enter firstname ");
 			   s = new Scanner(System.in);
 			   String firstname = s.nextLine();
-//			   if(bookList.get(bookname).Book.containsKey(firstname))
-//			   {
-//				  System.out.println("Please change firstname..already exits");
-//				  break;
-//			   }
 			AddressBook returnedBook =  bookList.entrySet().stream().filter(book-> bookname.equals(book.getKey())).map(Map.Entry::getValue).findFirst().orElse(null);
 			if(returnedBook.Book.entrySet().stream().anyMatch(contact -> firstname.equals(contact.getKey())))
 				{System.out.println("contact exists");
@@ -131,21 +127,10 @@ public class AddressBookMain {
 		   case 5:
 			   System.out.println("Enter the city you want");
 			   s= new Scanner(System.in);
-			   String c = s.nextLine();
-			   if(cityBook.containsKey(c)) {
-				   ArrayList listOfContacts= cityBook.get(c);
-				   Iterator<Contact> iter = listOfContacts.iterator();
-				   while(iter.hasNext())
-				   {
-					   Contact p = iter.next();
-					   System.out.println(p.firstname + p.lastname);
-					   System.out.println("No of persons in that city : " + stateBook.get(c).size());;
-
-				   }
-				   
-			   }
-			   else
-				   System.out.println("Sorry there are no contacts in that city");
+			   String cityToSearch = s.nextLine();
+			   bookList.values().stream().forEach(book ->
+			   book.Book.values().stream().filter(contact -> contact.city.equals(cityToSearch)).collect(Collectors.toList()).forEach(contact -> System.out.println(contact.firstname))
+					   );
 			   break;
 			   
 		   case 6:
@@ -165,7 +150,12 @@ public class AddressBookMain {
 			   }
 			   else
 				   System.out.println("Sorry there are no contacts in that state");
-			   break;
+			   
+//			   bookList.values().stream().forEach(book ->
+//			   book.Book.values().stream().filter(contact -> contact.state.equals(stateToSearch)).collect(Collectors.toList()).forEach(contact -> System.out.println(contact.firstname))
+//					   );
+//			   break;
+//			  
 			  
 			   
 	    }
