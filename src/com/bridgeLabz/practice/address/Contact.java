@@ -34,6 +34,36 @@ public class Contact {
 		System.out.println("email " + this.email);
 
 	}
+	
+	public String getFirstName()
+	{
+		return this.firstname;
+	}
+	
+	public String getLastName()
+	{
+		return this.lastname;
+	}
+	public String getEmail()
+	{
+		return this.email;
+	}
+	public String getPhoneNo()
+	{
+		return this.phone;
+	}
+	public String getZip()
+	{
+		return this.zip;
+	}
+	public String getCity()
+	{
+		return this.city;
+	}
+	public String getState()
+	{
+		return this.state;
+	}
 
 	public boolean equals(Contact p) {
 		if (this.lastname == p.lastname)
