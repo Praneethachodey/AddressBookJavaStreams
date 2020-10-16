@@ -1,6 +1,9 @@
 package com.bridgeLabz.practice.address;
 
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class AddressBook {
@@ -47,5 +50,20 @@ public class AddressBook {
 		System.out.println("Contact successfully deleted");}
 		else System.out.println("Contact not found");
 	}
+	
+	 //Method to add data to a file
+    public void writeData(ArrayList<Contact> contacts) {
+        StringBuffer contactBuffer = new StringBuffer();
+        contacts.forEach(contact -> {
+            String contactData = contact.toString().concat("\n");
+           contactBuffer.append(contactData);
+        });
+        try {
+            Files.write(Paths.get("addressFile.txt"), contactBuffer.toString().getBytes());
+
+        } catch (IOException e) {
+
+        }
+    }
 
 }
